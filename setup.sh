@@ -40,6 +40,7 @@ cp -f .vimrc.bundles ~/.vimrc.bundles
 
 echo "installing vim-nox...."
 sudo apt-get install vim-nox
+
 echo "installing bundles for vim, which will take times, please wait..."
 vim +BundleInstall +qall
 echo "done !!!!!!"
