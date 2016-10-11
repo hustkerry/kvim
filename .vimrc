@@ -3,11 +3,6 @@
 "ÉèÖÃÎªºÍvi²»¼æÈİÄ£Ê½
 set nocompatible
 
-"¸ßÁÁ¹â±êËùÔÚµÄĞĞºÍÁĞ£¬auÊÇvimµÄ×Ô¶¯ÃüÁî
-"au WinLeave * set nocursorline nocursorcolumn     "Àë¿ª´°¿ÚÇ°
-"au WinEnter * set cursorline cursorcolumn         "½øÈëÆäËû´°¿Úºó
-"set cursorline cursorcolumn
-
 let mapleader = ","    "ÉèÖÃÇ°×º¼ü
 
 if has("syntax")
@@ -18,10 +13,21 @@ set number
 set numberwidth=5
 
 "ÉèÖÃÅäÉ«·½°¸
-"colorscheme ron
-"highlight NonText guibg=#060606
-"highlight Folded  guibg=#0A0A0A guifg=#9090D0
+"if has('gui_running')
+"    set background=light
+"else
+"    set background=dark
+"endif
+"colorscheme solarized
+colorscheme molokai
+set t_Co=256
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
+"¸ßÁÁ¹â±êËùÔÚµÄĞĞºÍÁĞ£¬auÊÇvimµÄ×Ô¶¯ÃüÁî
+au WinLeave * set nocursorline nocursorcolumn     "Àë¿ª´°¿ÚÇ°
+au WinEnter * set cursorline cursorcolumn         "½øÈëÆäËû´°¿Úºó
+set cursorline cursorcolumn
 
 set backspace=2        "ÉèÖÃ»ØÍË¼ü
 set nobackup           "²»±¸·İ   
@@ -45,14 +51,24 @@ set fileencodings=utf-8,gb18030,gbk,big5       "vim»áÓÃÕâÀïµÄ±àÂë¸ñÊ½Ì½²âÎÄ¼şµÄ¸
 set tabstop=4        " ÉèÖÃÖÆ±í·û(tab¼ü)µÄ¿í¶È
 set softtabstop=4     " ÉèÖÃÈíÖÆ±í·ûµÄ¿í¶È    
 set shiftwidth=4    " (×Ô¶¯) Ëõ½øÊ¹ÓÃµÄ4¸ö¿Õ¸ñ
+set expandtab       "¿Õ¸ñÌæ»»tab
 set autoindent        " ÉèÖÃ×Ô¶¯¶ÔÆë(Ëõ½ø)£º¼´Ã¿ĞĞµÄËõ½øÖµÓëÉÏÒ»ĞĞÏàµÈ£»Ê¹ÓÃ noautoindent È¡ÏûÉèÖÃ
 
 filetype plugin indent on     "ÎÄ¼şÀàĞÍ¼ì²â
 
 "µ±Ò»ĞĞ×Ö·û³¬¹ı100µÄ,ÌáÊ¾
-"set textwidth=100
-"set colorcolumn=+1
+set textwidth=100
+set colorcolumn=+1
 
+"set list           "ÏÔÊ¾tabºÍ»»ĞĞ
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""²å¼şÅäÖÃ
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -64,7 +80,7 @@ autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
 func SetTitle() 
 	"Èç¹ûÎÄ¼şÀàĞÍÎª.shÎÄ¼ş 
 	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
+	    call setline(1,"\#!/bin/bash") 
 		call append(line("."), "") 
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
@@ -113,3 +129,4 @@ func SetTitle()
 	"ĞÂ½¨ÎÄ¼şºó£¬×Ô¶¯¶¨Î»µ½ÎÄ¼şÄ©Î²
 endfunc 
 autocmd BufNewFile * normal G
+
