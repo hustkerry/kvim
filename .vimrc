@@ -46,6 +46,7 @@ set hlsearch
 set laststatus=2  "总是显示最后一个窗口的状态行
 "set autowrite     "如果文件修改过，自动把内容写回文件
 set confirm       "处理未保存或者只读文件时候，弹出确认
+set encoding=utf8
 set fileencodings=utf-8,gb18030,gbk,big5       "vim会用这里的编码格式探测文件的格式
 
 set tabstop=4        " 设置制表符(tab键)的宽度
@@ -61,6 +62,12 @@ set textwidth=100
 set colorcolumn=+1
 
 "set list           "显示tab和换行
+
+" 显示中文帮助
+if version >= 603
+    set helplang=cn
+    set encoding=utf-8
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,14 +92,15 @@ func SetTitle()
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
 		call append(line("."), "# -*- coding: utf-8 -*-")
-		call append(line(".")+1, "\"\"\"")
-		call append(line(".")+2, " File Name: ".expand("%")) 
-		call append(line(".")+3, " Author: Kerry") 
-		call append(line(".")+4, " Mail: yuyao90@gmail.com") 
-		call append(line(".")+5, " Created Time: ".strftime("%c")) 
-		call append(line(".")+6, " Description: ")
-		call append(line(".")+7, "\"\"\"") 
-		call append(line(".")+8, "")
+        call append(line(".")+1, "")
+		call append(line(".")+2, "\"\"\"")
+		call append(line(".")+3, " File Name: ".expand("%")) 
+		call append(line(".")+4, " Author: Kerry") 
+		call append(line(".")+5, " Mail: yuyao90@gmail.com") 
+		call append(line(".")+6, " Created Time: ".strftime("%c")) 
+		call append(line(".")+7, " Description:")
+		call append(line(".")+8, "\"\"\"") 
+		call append(line(".")+9, "")
 
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
