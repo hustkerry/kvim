@@ -66,3 +66,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 :map <F2> :NERDTree<CR>
 let NERDTreeIgnore=['\.pyc']
+
+
+let g:pymode_options_max_line_length = 100
+let g:pymode_rope_goto_definition_bind = '<C-c>g'
+let g:pymode_rope_goto_definition_cmd = 'new'
+
